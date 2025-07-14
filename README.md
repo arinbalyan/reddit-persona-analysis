@@ -30,6 +30,11 @@ A tool that analyzes Reddit user profiles and generates detailed user personas b
 
 ## Usage
 
+simply run 
+```
+python main.py
+```
+and when asked input the user profile url. for example --> https://www.reddit.com/user/Hungry-Move-6603/
 ```
 python reddit_persona_generator.py --url https://www.reddit.com/user/username --output persona.md --limit 100
 ```
