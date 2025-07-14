@@ -37,8 +37,16 @@ A tool that analyzes Reddit user profiles and generates detailed user personas b
 
 ## Usage
 
+<<<<<<< HEAD
 Run the main script and follow the prompt:
 
+=======
+simply run 
+```
+python main.py
+```
+and when asked input the user profile url. for example --> https://www.reddit.com/user/Hungry-Move-6603/
+>>>>>>> 6e593ab51f81dbb0fc9dbe20089e29aa630fd7db
 ```
 python main.py
 ```
