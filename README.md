@@ -9,6 +9,8 @@ A tool that analyzes Reddit user profiles and generates detailed user personas b
 - Extracts demographic information, behaviors, frustrations, motivations, goals, and personality traits
 - Determines user archetype based on activity and content analysis
 - Generates a formatted persona document with citations linking back to source content
+- Outputs personas in the `personas/` directory for easy organization
+- Clearly marks missing or insufficient data in the output
 
 ## Installation
 
@@ -26,39 +28,59 @@ A tool that analyzes Reddit user profiles and generates detailed user personas b
    ```
 5. Set up Reddit API credentials:
    - Create a Reddit app at https://www.reddit.com/prefs/apps
-   - Copy `.env.example` to `.env` and fill in your credentials
+   - Create a `.env` file in the project root with the following variables:
+     ```
+     REDDIT_CLIENT_ID=your_client_id_here
+     REDDIT_CLIENT_SECRET=your_client_secret_here
+     REDDIT_USER_AGENT=your_user_agent_here
+     ```
 
 ## Usage
 
+Run the main script and follow the prompt:
+
 ```
-python reddit_persona_generator.py --url https://www.reddit.com/user/username --output persona.md --limit 100
+python main.py
 ```
 
-Arguments:
-- `--url`: Reddit user profile URL (required)
-- `--output`: Output file path (default: `persona.md`)
-- `--limit`: Maximum number of posts/comments to analyze (default: 100)
+- You will be prompted to enter a Reddit user profile URL (e.g., https://www.reddit.com/user/kojied/)
+- The script will fetch and analyze the user's posts and comments
+- The generated persona will be saved in the `personas/` directory (e.g., `personas/kojied_persona_YYYYMMDD_HHMMSS.txt`)
+
+### Command-line Options
+
+- `-o`, `--output`: Output file path (default: auto-named in `personas/`)
+- `-l`, `--limit`: Maximum number of posts/comments to analyze (default: 100)
+- `-v`, `--verbose`: Enable verbose output
 
 ## Output Format
 
 The generated persona includes:
 
-- Header with persona name and quote
-- Basic information (age, occupation, status, location, tier, archetype)
-- Behavior and habits
-- Frustrations
-- Motivations (with visual scales)
-- Personality traits (with visual scales)
-- Goals and needs
+- ### Traits
+- ### Highlighted Quote
+- ### Basic Information (age, occupation, status, location, tier, archetype)
+- ### Behavior & Habits
+- ### Frustrations
+- ### Motivations (with visual scales)
+- ### Personality (with visual scales)
+- ### Goals & Needs
 
-Each insight includes a citation linking back to the source content.
+**Missing or insufficient data is clearly marked as:**
+```
+Less info to analyze this
+```
+
+Each insight includes a citation linking back to the source content when available.
 
 ## Project Structure
 
-- `reddit_persona_generator.py`: Main entry point
+- `main.py`: Main entry point (run this script)
 - `reddit_scraper.py`: Handles Reddit API interactions
 - `persona_analyzer.py`: Analyzes user data with NLP
 - `persona_generator.py`: Formats and outputs the persona document
+- `personas/`: Output directory for generated persona files
+- `requirements.txt`: Python dependencies
 
 ## Dependencies
 
@@ -68,6 +90,7 @@ Each insight includes a citation linking back to the source content.
 - pandas: Data processing
 - tqdm: Progress bars
 - python-dotenv: Environment variable management
+- requests, beautifulsoup4, colorama, argparse
 
 ## License
 
